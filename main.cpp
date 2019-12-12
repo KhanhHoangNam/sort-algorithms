@@ -55,6 +55,21 @@ int ackerman(int m, int n) {
         return ackerman(m-1, ackerman(m, n-1));
     }        
 }
+//6th.Mutual Recursion
+bool isEven(int n);
+bool isOdd(int n);
+bool isEven(int n) {
+    if(n == 0) {
+        return true;
+    } else
+    {
+        return isOdd(n-1);
+    }    
+}
+bool isOdd(int n) {
+    return !isEven(n);
+}
+
 int main(int argc, char** argv) { 
     //1st.Linear recursion
     // int n;
@@ -91,6 +106,20 @@ int main(int argc, char** argv) {
     // return 0;
 
     //5th.Nested Recursion
-    cout<<ackerman(2,1);
+    // cout<<ackerman(2,1);
+    // return 0;
+
+    //6th.Mutual Recursion
+    int number = 9;
+    bool result = isEven(number);
+    if (result == true)
+    {
+        cout<<number<<" là số chẵn";
+    } else
+    {
+        cout<<number<<" là số lẻ";
+    }
+    
+    
     return 0;
 }
