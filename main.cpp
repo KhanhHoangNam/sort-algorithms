@@ -43,6 +43,18 @@ void print_permutations(int arr[], int n, int i) {
         print_permutations(arr, n, i+1);
     }
 }
+//5th.Nested Recursion
+int ackerman(int m, int n) {
+    if(m == 0) {
+        return n+1;
+    } else if (n == 0)
+    {
+        return ackerman(m-1,1);
+    } else
+    {
+        return ackerman(m-1, ackerman(m, n-1));
+    }        
+}
 int main(int argc, char** argv) { 
     //1st.Linear recursion
     // int n;
@@ -69,12 +81,16 @@ int main(int argc, char** argv) {
 
 
     //4th.Exponential Recursion
-    int M[3];
-    M[0] = 10;
-    M[1] = 2;
-    M[2] = 5;
-    print_array(M, 3);
-    cout<<"-----------------\n";
-    print_permutations(M, 3, 0);
+    // int M[3];
+    // M[0] = 10;
+    // M[1] = 2;
+    // M[2] = 5;
+    // print_array(M, 3);
+    // cout<<"-----------------\n";
+    // print_permutations(M, 3, 0);
+    // return 0;
+
+    //5th.Nested Recursion
+    cout<<ackerman(2,1);
     return 0;
 }
