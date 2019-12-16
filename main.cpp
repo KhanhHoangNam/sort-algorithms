@@ -22,7 +22,7 @@ int gcd(int m, int n) {
 int fib(int n) {
     if(n <= 2)
         return 1;
-    return fib(n-1) + fib(n-2);        
+    return fib(n-1) + fib(n-2);     
 }
 //4th.Exponential Recursion
 void print_array(int arr[], int n) {
@@ -97,6 +97,12 @@ void move(int n, char A, char B, char C) {
     }
             
 }
+// 10.Calculate sum = 1+2+3+4+ ... +n
+int sum(int n) {
+    if(n == 1 )
+        return 1;
+    return sum(n - 1) + n;        
+}   
 
 int main(int argc, char** argv) { 
     //1st.Linear recursion
@@ -162,7 +168,12 @@ int main(int argc, char** argv) {
     // return 0;
 
     //9.Tháp Hà Nội
-    int n = 3;
-    move(n, 'A','B', 'C');                                        
+    // int n = 3;
+    // move(n, 'A','B', 'C');                                        
+    // return 0;
+
+    // 10.Calculate sum = 1+2+3+4+ ... +n
+    int n = 4;
+    cout<<sum(n);
     return 0;
 }
