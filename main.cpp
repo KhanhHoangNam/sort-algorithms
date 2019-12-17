@@ -15,7 +15,7 @@ int main(int argc, char** argv) {
        cout<<"Mang sau khi nhap ngau nhien la: \n";
        XuatMang(M, n);
        int x;
-       cout<<"\nMoi Thim nhap vao 1 so: ";
+       cout<<"\nPlease enter a number: ";
        cin>>x;
        int result = LinearSearch(M, n, x);
        if(result == -1)
