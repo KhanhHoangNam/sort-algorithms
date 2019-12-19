@@ -1,53 +1,178 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
+#include <stdio.h>
 
 using namespace std;
 
 //1.Tìm kiếm tuyến tính mảng cơ sở
+// void NhapMang(int M[], int n);
+// void XuatMang(int M[], int n);
+// int LinearSearch(int M[], int n, int x);
+
+//2.Tìm kiếm tuyến tính trên mảng cấu trúc
+// struct Student
+// {
+//     char code[10];
+//     char name[150];
+//     bool gender;
+// };
+// void EnterStudentList(Student studentLst[], int size);
+// void ExportStudentList(Student studentLst[], int size);
+
+//3.Tìm kiếm nhị phân trên mảng cơ sở
 void NhapMang(int M[], int n);
 void XuatMang(int M[], int n);
-int LinearSearch(int M[], int n, int x);
+int BinarySearch(int M[], int n, int x);
+int BinarySearchRecursion(int M[], int x,  int left, int right);
+
 int main(int argc, char** argv) { 
-       int n = 10;
-       int M[n];
-       NhapMang(M, n);
-       cout<<"Mang sau khi nhap ngau nhien la: \n";
-       XuatMang(M, n);
-       int x;
-       cout<<"\nPlease enter a number: ";
-       cin>>x;
-       int result = LinearSearch(M, n, x);
-       if(result == -1)
-            cout<<"Không tìm thấy "<<x<<" trong mảng"; 
-       else       
-            cout<<"Thấy "<<x<<" tại vị trí: "<<result; 
-       return 0;
+       //1.Tìm kiếm tuyến tính mảng cơ sở
+    //    int n = 10;
+    //    int M[n];
+    //    NhapMang(M, n);
+    //    cout<<"Mang sau khi nhap ngau nhien la: \n";
+    //    XuatMang(M, n);
+    //    int x;
+    //    cout<<"\nPlease enter a number: ";
+    //    cin>>x;
+    //    int result = LinearSearch(M, n, x);
+    //    if(result == -1)
+    //         cout<<"Không tìm thấy "<<x<<" trong mảng"; 
+    //    else       
+    //         cout<<"Thấy "<<x<<" tại vị trí: "<<result; 
+    //    return 0;
+
+        //2.Tìm kiếm tuyến tính trên mảng cấu trúc
+        // int size = 3;
+        // Student studentLst[size];
+        // EnterStudentList(studentLst, size);
+        // cout<<"List students after entering:\n";
+        // ExportStudentList(studentLst, size);
+        // return 0;
+
+    //3.Tìm kiếm nhị phân trên mảng cơ sở   
+    int n = 5;
+    int M[n];
+    NhapMang(M, n);
+    cout<<"Mang sau khi nhap:\n";
+    XuatMang(M, n);
+    cout<<"\nNhap so muon tim:";
+    int x;
+    cin>>x;
+    // int result = BinarySearch(M, n, x);
+    int result = BinarySearchRecursion(M, x, 0, n - 1);
+    if(result == -1) {
+        cout<<"Khong tim thay "<<x;
+    } else        
+        cout<<"Thay "<< x << " tai vi tri " << result;       
+    return 0;
+
+
 }
+//1.Tìm kiếm tuyến tính mảng cơ sở
+// void NhapMang(int M[], int n) {
+//     srand(time(NULL));
+//     for (int i = 0; i < n; i++)
+//     {
+//         M[i] = rand() % 100;
+//     }    
+// }
+
+// void XuatMang(int M[], int n) {
+//     for (int i = 0; i < n; i++)
+//     {
+//         cout<<M[i]<<"\t";
+//     }    
+// }
+
+// int LinearSearch(int M[], int n, int x) {
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (M[i] == x)
+//         {
+//             return i;
+//         }                
+//     }
+//     return -1;    
+// }
+
+//2.Tìm kiếm tuyến tính trên mảng cấu trúc
+// void EnterStudentList(Student studentLst[], int size){
+//     for (int i = 0; i < size; i++)
+//     {
+//         cout<<"Enter code: ";
+//         fgets(studentLst[i].code, sizeof i, stdin);
+
+//         cout<<"Enter name: ";
+//         fgets(studentLst[i].name, sizeof i, stdin);
+
+//         cout<<"Enter gender(m/f): ";
+//         char gd[2];
+//         fgets(gd, sizeof i, stdin);
+//         if(strcmp(gd, "m") == 0)
+//             studentLst[i].gender = false;
+//         else        
+//             studentLst[i].gender = true;                            
+//     }        
+// }
+
+// void ExportStudentList(Student studentLst[], int size){
+//     for (int i = 0; i < size; i++)
+//     {
+//         cout<<studentLst[i].code<<"\t"<<studentLst[i].name<<"\t"<<studentLst[i].gender<<"\n";
+//     }    
+// }
+
+//3.Tìm kiếm nhị phân trên mảng cơ sở
 void NhapMang(int M[], int n) {
-    srand(time(NULL));
     for (int i = 0; i < n; i++)
     {
-        M[i] = rand() % 100;
-    }
-    
+        cout<<"M["<<i<<"]=";
+        cin>>M[i];
+    }    
 }
 
 void XuatMang(int M[], int n) {
     for (int i = 0; i < n; i++)
     {
         cout<<M[i]<<"\t";
-    }    
+    }
+    
 }
 
-int LinearSearch(int M[], int n, int x) {
-    for (int i = 0; i < n; i++)
+int BinarySearch(int M[], int n, int x) {
+    int left = 0;
+    int right = n - 1;
+    int mid;
+    do
     {
-        if (M[i] == x)
+        mid = (left + right) / 2;
+        if (M[mid] == x)
         {
-            return i;
-        }                
-    }
-    return -1;
-    
+            return mid;
+        }
+        else if (M[mid] > x)
+        {
+            right = mid - 1;
+        } else
+        {
+            left = mid + 1;
+        }
+                        
+    } while (left <= right);     
+
+    return -1;   
+}
+
+int BinarySearchRecursion(int M[], int x, int left, int right) {
+    if(left > right)
+        return -1;
+    int mid = (left + right) / 2; 
+    if(M[mid] == x)       
+        return mid;
+    if (M[mid] > x)
+        return BinarySearchRecursion(M, x, left, mid - 1);
+    return BinarySearchRecursion(M, x, mid + 1, right);                        
 }
