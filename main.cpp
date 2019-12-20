@@ -28,16 +28,21 @@ using namespace std;
 // int BinarySearchRecursion(int M[], int x,  int left, int right);
 
 //4.Tìm kiếm nhị phân mảng cấu trúc
-struct Product
-{
-    int code;
-    char name[150];
-    float price;
-};
+// struct Product
+// {
+//     int code;
+//     char name[150];
+//     float price;
+// };
 
-void EnterProductList(Product productList[], int n);
-void ExportProductList(Product productList[], int n);
+// void EnterProductList(Product productList[], int n);
+// void ExportProductList(Product productList[], int n);
 
+//5.Rèn luyện Mảng cơ sở tìm tuyến tính
+void EnterArray(int F[], int n);
+void ExportArray(int F[], int n);
+int Count(int F[], int n, float x);
+int EvenNumberMax(int F[], int n);
 
 int main(int argc, char** argv) { 
        //1.Tìm kiếm tuyến tính mảng cơ sở
@@ -82,13 +87,33 @@ int main(int argc, char** argv) {
     // return 0;
 
     //4.Tìm kiếm nhị phân mảng cấu trúc
+    // int n;
+    // cout<<"Nhập số sản phẩm: ";
+    // cin>>n;
+    // Product productList[n];
+    // EnterProductList(productList, n);
+    // cout<<"Sản phẩm sau khi nhập:\n";
+    // ExportProductList(productList, n);
+    // return 0;
+
+    //5.Rèn luyện Mảng cơ sở tìm tuyến tính
     int n;
-    cout<<"Nhập số sản phẩm: ";
-    cin>>n;
-    Product productList[n];
-    EnterProductList(productList, n);
-    cout<<"Sản phẩm sau khi nhập:\n";
-    ExportProductList(productList, n);
+    cout<<"Nhap so phan tu: ";
+    cin>>n;    
+    int F[n];
+    EnterArray(F, n);
+    cout<<"Mang sau khi nhap:\n";
+    ExportArray(F, n);
+
+    // int x;
+    // cout<<"\nNhap gia tri cua x: ";
+    // cin>>x;
+    // int result = Count(F, n, x);
+    // cout<<"\nGia tri "<<x<<" xuat hien "<<result<<" lan trong mang";
+
+    int result = EvenNumberMax(F, n);
+    cout<<"\nSo chan lon nhat trong mang la: "<<result;
+
     return 0;
 }
 //1.Tìm kiếm tuyến tính mảng cơ sở
@@ -198,26 +223,65 @@ int main(int argc, char** argv) {
 // }
 
 //4.Tìm kiếm nhị phân mảng cấu trúc
-void EnterProductList(Product productList[], int n) {
+// void EnterProductList(Product productList[], int n) {
+//     for (int i = 0; i < n; i++)
+//     {
+//         cout<<"Nhập sản phẩm thứ "<<i<<endl;
+//         cout<<"Code: ";
+//         cin>>productList[i].code;
+//         cin.ignore();
+//         cout<<"Name: ";
+//         fgets(productList[i].name, i, stdin);
+//         cin.ignore();
+//         cout<<"Price: ";
+//         cin>>productList[i].price;
+//     }
+    
+// }
+// void ExportProductList(Product productList[], int n) {
+//     for (int i = 0; i < n; i++)
+//     {
+//         Product product = productList[i];
+//         cout<<product.code<<"\t"<<product.name<<"\t"<<product.price<<endl;
+//     }    
+// }
+
+//5.Rèn luyện Mảng cơ sở tìm tuyến tính
+void EnterArray(int F[], int n) {
     for (int i = 0; i < n; i++)
     {
-        cout<<"Nhập sản phẩm thứ "<<i<<endl;
-        cout<<"Code: ";
-        cin>>productList[i].code;
-        cin.ignore();
-        cout<<"Name: ";
-        fgets(productList[i].name, i, stdin);
-        cin.ignore();
-        cout<<"Price: ";
-        cin>>productList[i].price;
+        cout<<"Nhap gia tri phan tu thu "<<i<<" : ";
+        cin>>F[i];
     }
     
 }
-void ExportProductList(Product productList[], int n) {
+void ExportArray(int F[], int n) {
     for (int i = 0; i < n; i++)
     {
-        Product product = productList[i];
-        cout<<product.code<<"\t"<<product.name<<"\t"<<product.price<<endl;
+        cout<<F[i]<<"\t";
     }
     
+}
+
+int Count(int F[], int n, float x) {
+    int count = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if(F[i] == x) {
+            count++;
+        }
+    }
+    return count;
+}
+
+int EvenNumberMax(int F[], int n) {
+    int max = -99999;
+    for (int i = 0; i < n; i++)
+    {
+        if (F[i]>max && F[i]%2 == 0)
+        {
+            max = F[i];
+        }        
+    } 
+    return max;   
 }
